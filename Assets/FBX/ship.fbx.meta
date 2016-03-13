@@ -1,0 +1,168 @@
+fileFormatVersion: 2
+guid: 0f2e09348a089294fa483c4c75041de3
+timeCreated: 1454646631
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Body1
+    100002: LefttCockpitGlass
+    100004: RightBody
+    100006: RightBody1
+    100008: RightBottomShoulder
+    100010: RightBottomShoulder1
+    100012: RightCockpit
+    100014: RightCockpit1
+    100016: RightCockpitGlass
+    100018: RightPropulsor
+    100020: RightPropulsor1
+    100022: RightShoulderUnion
+    100024: RightShoulderUnion1
+    100026: RightUpperShoulder
+    100028: RightUpperShoulder1
+    100030: RightWing
+    100032: RightWing1
+    100034: RightWingUnion
+    100036: RightWingUnion1
+    100038: //RootNode
+    100040: transform1
+    400000: Body1
+    400002: LefttCockpitGlass
+    400004: RightBody
+    400006: RightBody1
+    400008: RightBottomShoulder
+    400010: RightBottomShoulder1
+    400012: RightCockpit
+    400014: RightCockpit1
+    400016: RightCockpitGlass
+    400018: RightPropulsor
+    400020: RightPropulsor1
+    400022: RightShoulderUnion
+    400024: RightShoulderUnion1
+    400026: RightUpperShoulder
+    400028: RightUpperShoulder1
+    400030: RightWing
+    400032: RightWing1
+    400034: RightWingUnion
+    400036: RightWingUnion1
+    400038: //RootNode
+    400040: transform1
+    2300000: LefttCockpitGlass
+    2300002: RightBody
+    2300004: RightBody1
+    2300006: RightBottomShoulder
+    2300008: RightBottomShoulder1
+    2300010: RightCockpit
+    2300012: RightCockpit1
+    2300014: RightCockpitGlass
+    2300016: RightPropulsor
+    2300018: RightPropulsor1
+    2300020: RightShoulderUnion
+    2300022: RightShoulderUnion1
+    2300024: RightUpperShoulder
+    2300026: RightUpperShoulder1
+    2300028: RightWing
+    2300030: RightWing1
+    2300032: RightWingUnion
+    2300034: RightWingUnion1
+    3300000: LefttCockpitGlass
+    3300002: RightBody
+    3300004: RightBody1
+    3300006: RightBottomShoulder
+    3300008: RightBottomShoulder1
+    3300010: RightCockpit
+    3300012: RightCockpit1
+    3300014: RightCockpitGlass
+    3300016: RightPropulsor
+    3300018: RightPropulsor1
+    3300020: RightShoulderUnion
+    3300022: RightShoulderUnion1
+    3300024: RightUpperShoulder
+    3300026: RightUpperShoulder1
+    3300028: RightWing
+    3300030: RightWing1
+    3300032: RightWingUnion
+    3300034: RightWingUnion1
+    4300000: RightBody
+    4300002: RightCockpit
+    4300004: RightCockpit1
+    4300006: RightBody1
+    4300008: RightWing
+    4300010: RightUpperShoulder
+    4300012: RightUpperShoulder1
+    4300014: RightWing1
+    4300016: RightShoulderUnion1
+    4300018: RightBottomShoulder1
+    4300020: RightWingUnion1
+    4300022: RightCockpitGlass
+    4300024: LefttCockpitGlass
+    4300026: RightPropulsor
+    4300028: RightPropulsor1
+    4300030: RightBottomShoulder
+    4300032: RightWingUnion
+    4300034: RightShoulderUnion
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

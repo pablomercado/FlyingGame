@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: d2d226bd3a9fb244e8212968eb6108ea
+timeCreated: 1452074515
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: BlendShapes
+    100002: Body
+    100004: BS_BrakeSquash
+    100006: BS_BrakeStretch
+    100008: BS_TwistL
+    100010: BS_TwistR
+    100012: Ctrl_BSBrake
+    100014: Ctrl_BSBrakeStretch
+    100016: Ctrl_BSTwistL
+    100018: Ctrl_BSTwistR
+    100020: Ctrl_EyesUVCoord
+    100022: LPropeller
+    100024: LPropellerFast
+    100026: MainCtrl
+    100028: //RootNode
+    100030: PlaneGeometry
+    100032: PlaneHolder
+    100034: RPropeller
+    100036: RPropellerFast
+    400000: BlendShapes
+    400002: Body
+    400004: BS_BrakeSquash
+    400006: BS_BrakeStretch
+    400008: BS_TwistL
+    400010: BS_TwistR
+    400012: Ctrl_BSBrake
+    400014: Ctrl_BSBrakeStretch
+    400016: Ctrl_BSTwistL
+    400018: Ctrl_BSTwistR
+    400020: Ctrl_EyesUVCoord
+    400022: LPropeller
+    400024: LPropellerFast
+    400026: MainCtrl
+    400028: //RootNode
+    400030: PlaneGeometry
+    400032: PlaneHolder
+    400034: RPropeller
+    400036: RPropellerFast
+    4300000: LPropeller
+    4300002: LPropellerFast
+    4300004: RPropeller
+    4300006: RPropellerFast
+    4300008: Body
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Body
+    13700002: LPropeller
+    13700004: LPropellerFast
+    13700006: RPropeller
+    13700008: RPropellerFast
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 1350
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: PlaneHolder
+        weight: 1
+      - path: PlaneHolder/BlendShapes
+        weight: 1
+      - path: PlaneHolder/BlendShapes/BS_BrakeSquash
+        weight: 1
+      - path: PlaneHolder/BlendShapes/BS_BrakeStretch
+        weight: 1
+      - path: PlaneHolder/BlendShapes/BS_TwistL
+        weight: 1
+      - path: PlaneHolder/BlendShapes/BS_TwistR
+        weight: 1
+      - path: PlaneHolder/MainCtrl
+        weight: 1
+      - path: PlaneHolder/MainCtrl/Ctrl_BSBrake
+        weight: 1
+      - path: PlaneHolder/MainCtrl/Ctrl_BSBrakeStretch
+        weight: 1
+      - path: PlaneHolder/MainCtrl/Ctrl_BSTwistL
+        weight: 1
+      - path: PlaneHolder/MainCtrl/Ctrl_BSTwistR
+        weight: 1
+      - path: PlaneHolder/MainCtrl/Ctrl_EyesUVCoord
+        weight: 1
+      - path: PlaneHolder/MainCtrl/PlaneGeometry
+        weight: 1
+      - path: PlaneHolder/MainCtrl/PlaneGeometry/Body
+        weight: 1
+      - path: PlaneHolder/MainCtrl/PlaneGeometry/LPropeller
+        weight: 1
+      - path: PlaneHolder/MainCtrl/PlaneGeometry/LPropellerFast
+        weight: 1
+      - path: PlaneHolder/MainCtrl/PlaneGeometry/RPropeller
+        weight: 1
+      - path: PlaneHolder/MainCtrl/PlaneGeometry/RPropellerFast
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 300
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
