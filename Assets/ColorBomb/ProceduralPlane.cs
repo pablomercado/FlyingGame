@@ -16,7 +16,7 @@ public class ProceduralPlane : MonoBehaviour
         //Generate();
     }
 
-    private void Generate(int _xSize, int _ySize)
+    public void Generate(int _xSize, int _ySize)
     {
         xSize = _xSize;
         ySize = _ySize;

@@ -4,15 +4,17 @@ using System.Collections;
 public class ColorBombRay : MonoBehaviour {
 
     public ProceduralPlane plane1;
-    
+    private int xSize, ySize;
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Start()
+    {
+        Generate(6, 1);
+    }
+
+    public void Generate(int _xSize, int _ySize)
+    {
+        plane1.Generate(_xSize, _ySize);
+    }
+
+
 }
