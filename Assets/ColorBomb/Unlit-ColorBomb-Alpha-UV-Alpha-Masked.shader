@@ -3,7 +3,7 @@
 // - no lightmap support
 // - no per-material color
 
-Shader "Unlit/Transparent-UV-Alpha-Masked" {
+Shader "Unlit/ColorBomb-Transparent-UV-Alpha-Masked" {
 Properties {
 	_MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
 	_Color ("Color", Color) = (1,1,1,1)
