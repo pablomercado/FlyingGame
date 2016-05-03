@@ -9,7 +9,7 @@ public class CannonController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyDown(KeyCode.Joystick1Button2)) {
+        if (Input.GetKeyDown(KeyCode.Joystick1Button2) || Input.GetKeyDown(KeyCode.LeftControl)) {
 
             BulletController bulletClone = Instantiate(Bullet, transform.position + Vector3.forward * 2f, gameObject.transform.rotation) as BulletController;
             bulletClone.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * bulletForce);

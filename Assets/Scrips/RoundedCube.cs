@@ -17,6 +17,7 @@ public class RoundedCube : MonoBehaviour {
 	}
 
 	public void Generate () {
+        this.name = "building";
 		GetComponent<MeshFilter>().mesh = mesh = new Mesh();
 		mesh.name = "Procedural Cube";
 		CreateVertices();
