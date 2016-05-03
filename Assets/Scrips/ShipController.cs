@@ -11,6 +11,7 @@ public class ShipController : MonoBehaviour {
     public float maxAcceleration = 166.5f;
     public float RightCoefficient = 5f;
     public float UpCoefficient = 10f;
+    public float PitchForce = 30f;
 
     public float LiftCoefficient = 1f;
     public float RollSpeed = 40f;
@@ -62,30 +63,26 @@ public class ShipController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        //shipRigidBody.AddRelativeForce(Vector3.right * h * 25f);
-
-        if (v != 0)
+        
+        if (shipRigidBody.angularVelocity.magnitude < 1)
         {
-            shipRigidBody.AddRelativeTorque(Vector3.right * v * 50f * Time.fixedDeltaTime);
+            shipRigidBody.AddRelativeTorque(Vector3.right * v * PitchForce * Time.fixedDeltaTime);
         }
-        else
-        {
-            shipRigidBody.AddRelativeTorque(Vector3.right * v * 50f * Time.fixedDeltaTime);
-        }
+        //Debug.Log(shipRigidBody.angularVelocity.magnitude);
+       
         shipRigidBody.AddTorque(Vector3.up * h * 15f * Time.fixedDeltaTime);
         shipRigidBody.AddRelativeTorque(Vector3.forward * h * -70f * Time.fixedDeltaTime);
-
-
 
         //Lift force
         Vector3 right = ShipBody.transform.right;
         right.x = 0f;
         LiftCoefficient = 1 + (-v * Quaternion.LookRotation(right).eulerAngles.x * Time.fixedDeltaTime);
         shipRigidBody.AddRelativeForce(Vector3.up * Physics.gravity.magnitude * shipRigidBody.mass * LiftCoefficient);
-        
+
+        Debug.Log(ShipBody.transform.rotation.eulerAngles);
+
         //Forward force
         Vector3 addedForce = Vector3.forward * ForwardForce;
-        if (shipRigidBody.velocity.magnitude < terminalVelocity)
-        shipRigidBody.AddRelativeForce(addedForce);
+        if (shipRigidBody.velocity.magnitude < terminalVelocity) shipRigidBody.AddRelativeForce(addedForce);
     }
 }

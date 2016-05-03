@@ -6,6 +6,7 @@ public class BulletController : MonoBehaviour {
         if (col.gameObject.name == "building")
         {
             Destroy(col.gameObject);
+            Destroy(this.gameObject);
         }
     }
 }
