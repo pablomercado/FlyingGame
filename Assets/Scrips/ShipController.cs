@@ -76,10 +76,23 @@ public class ShipController : MonoBehaviour {
         //Lift force
         Vector3 right = ShipBody.transform.right;
         right.x = 0f;
-        LiftCoefficient = 1 + (-v * Quaternion.LookRotation(right).eulerAngles.x * Time.fixedDeltaTime);
-        shipRigidBody.AddRelativeForce(Vector3.up * Physics.gravity.magnitude * shipRigidBody.mass * LiftCoefficient);
+        float pitchAngle = ShipBody.transform.rotation.eulerAngles.x;
+        bool upwardsRotation = false;
+        if (pitchAngle > 180f) {
+            pitchAngle -= 180f;
+            upwardsRotation = true;
+        }
+        if (pitchAngle > 90f) pitchAngle -= 90f;
 
-        Debug.Log(ShipBody.transform.rotation.eulerAngles);
+        if (upwardsRotation) {
+            LiftCoefficient = 1 + (pitchAngle / 90);
+        }
+        else {
+            LiftCoefficient = 1 - (pitchAngle / 90);
+        }
+        
+        Debug.Log(LiftCoefficient);
+        shipRigidBody.AddRelativeForce(Vector3.up * Physics.gravity.magnitude * shipRigidBody.mass * LiftCoefficient);
 
         //Forward force
         Vector3 addedForce = Vector3.forward * ForwardForce;
