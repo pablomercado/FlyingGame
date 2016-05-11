@@ -3,11 +3,16 @@ using System.Collections;
 
 public class ColorBombTrailController : MonoBehaviour {
 
+    public ParticleSystem ParticlesTip;
+    public ParticleSystem ParticlesOrigin;
+    public ParticleSystem ParticlesTarget;
+    public GameObject Trail;
     private BoxCollider boxCollider;
     private float speedOfTrail = 2f;
     private float fraction = 0;
     private Vector3 targetPosition, initialPosition;
     private float angleInDegrees = 0f;
+    private bool playing = false;
 
     void Start()
     {
@@ -23,31 +28,32 @@ public class ColorBombTrailController : MonoBehaviour {
         angleInDegrees = (float)(angle2);
         angleInDegrees = Mathf.Rad2Deg * angleInDegrees;
 
-        gameObject.transform.position = initialPosition;
-        //gameObject.transform.eulerAngles = new Vector3(0, 0, angleInDegrees);
+        Trail.transform.position = initialPosition;
+        ParticlesTarget.transform.position = targetPosition;
+        ParticlesOrigin.transform.position = initialPosition;
+        Trail.transform.eulerAngles = new Vector3(0, 0, angleInDegrees);
 
-        //Vector3 forceVector = gameObject.transform.right;
         fraction = 0f;
-        //gameObject.GetComponent<Rigidbody>().isKinematic = false;
-        //gameObject.GetComponent<Rigidbody>().AddForce(forceVector * speedOfTrail, ForceMode.Impulse);
-        //gameObject.GetComponent<Rigidbody>().isKinematic = false;
-        //gameObject.GetComponent<Rigidbody>().AddForce(forceVector * speedOfTrail, ForceMode.Impulse);
-
+        playing = true;
     }
 
-    // Update is called once per frame
     void Update () {
-        if (fraction < 1) {
-            fraction += Time.deltaTime * speedOfTrail;
-            transform.position = Vector3.Lerp(initialPosition, targetPosition, fraction);
+
+        if (playing) {
+            if (ParticlesTip.isStopped) ParticlesTip.Play();
+            if (ParticlesOrigin.isStopped) ParticlesOrigin.Play();
+            Debug.Log(ParticlesTip.isPlaying);
+            if (fraction < 1) {
+                fraction += Time.deltaTime * speedOfTrail;
+                Trail.transform.position = Vector3.Lerp(initialPosition, targetPosition, fraction);
+            }
+            else {
+                fraction = 0f;
+                playing = false;
+                ParticlesTip.Stop();
+                ParticlesOrigin.Stop();
+                ParticlesTarget.Play();
+            }
         }
     }
-
-    //void OnCollisionEnter()
-    //{
-
-    //    gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-    //    gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-    //    gameObject.GetComponent<Rigidbody>().isKinematic = true;
-    //}
 }
