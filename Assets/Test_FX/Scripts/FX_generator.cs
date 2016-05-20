@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class FX_generator : MonoBehaviour {
 
 	private List<QuadTransitionFX> quadList ;
-	private int _numFX= 2000;
+	private int _numFX= 20;
 	
 	void Start () {
 		// we only need to load our reference Prefab once

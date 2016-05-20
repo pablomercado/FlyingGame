@@ -44,11 +44,11 @@ public class QuadTransitionFX {
 		_rampVheight = 1;
 
 		// time in seconds for the FX to complete its appearance animation
-		FadeInDuration = 0.4f;
+		FadeInDuration = 1f;
 		// time in seconds for the FX to stay static at the end of its appearance before it starts to disappear
 		// please note that this can be NEGATIVE.
 		// And yes it can be very usefull to start the disappearance animation before the end of the appearance!
-		FadeOffsetDuration = 0f;
+		FadeOffsetDuration = 2f;
 		// time in seconds for the FX to complete its disappearance animation
 		FadeOutDuration = 1f;
 		// time in seconds CENTERED around the middle of the FadeOffsetDuration
