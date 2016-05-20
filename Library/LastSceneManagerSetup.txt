@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Procedural Grid.unity
+- path: Assets/Test_FX/test_FX.unity
   isLoaded: 1
   isActive: 1
