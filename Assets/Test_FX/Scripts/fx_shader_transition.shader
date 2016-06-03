@@ -81,7 +81,7 @@ Shader "AlkemiShaders/fx_shader_transition" {
 		// - the R channel of the animation texture with a 'level' effect ponderated by the blue channel : saturate(fadeInFactor *15*(1-texEffect.b))
 		// - the G channel of the animation texture with a 'level' effect ponderated by the blue channel : saturate(fadeOutFactor *15*(1-texEffect.b))
 		// - the material color (_Color.a)
-		o.Alpha = texBLEND.a * saturate(fadeInFactor *15*(1-texEffect.b)) * saturate(fadeOutFactor *15*(1-texEffect.b)) * _Color.a;
+		o.Alpha = texBLEND.a * saturate(fadeInFactor *15*(1-texEffect.b)) * saturate(fadeOutFactor *15*(1-texEffect.b)) * _Color.a * IN.uv_EffectMap.x * 0.8f;
 	}
 	ENDCG
 	}

@@ -23,8 +23,10 @@ public class QuadTransitionFX {
 
 	private static int _RampUV_ID = Shader.PropertyToID("_RampUV");
 	private static int _LifeColor_ID = Shader.PropertyToID("_LifeColor");
+    private static int _Color_ID = Shader.PropertyToID("_Color");
 
-	public QuadTransitionFX ( GameObject proto, Vector3 pos )
+
+    public QuadTransitionFX ( GameObject proto, Vector3 pos )
 	{
 		// we instantiate our Quad
 		// ... or you could generate your own geometry around here.
@@ -50,11 +52,11 @@ public class QuadTransitionFX {
 		// And yes it can be very usefull to start the disappearance animation before the end of the appearance!
 		FadeOffsetDuration = 2f;
 		// time in seconds for the FX to complete its disappearance animation
-		FadeOutDuration = 1f;
+		FadeOutDuration = 0.5f;
 		// time in seconds CENTERED around the middle of the FadeOffsetDuration
 		// where the gradient of the appearance blend into the gradient of the disappearance
 		// this is to avoid a hiccup between the 2 phases.
-		FadeTransitionDuration =0.2f;
+		FadeTransitionDuration =0.1f;
 
 		LifeTime = Random.value * (FadeInDuration + FadeOutDuration + FadeOffsetDuration) ;
 		_currentRampColor = new Color(0, 1, 1, 1);
@@ -93,9 +95,12 @@ public class QuadTransitionFX {
 		// you MUST clear a MaterialPropertyBlock before you assign new values!
 		// If you don't : goodbye framerate and hello memory leak !
 		_mpb.Clear ();
-		// It's faster to use int than string to identify shader properties
-		_mpb.AddVector(_RampUV_ID, _rampUv);
+        // It's faster to use int than string to identify shader properties
+
+        Vector4 _color = new Vector4(1f, 1f, 0f, 1f);
+        _mpb.AddVector(_RampUV_ID, _rampUv);
 		_mpb.AddVector (_LifeColor_ID, _currentRampColor);
+        _mpb.AddVector(_Color_ID, _color);
 		// Assign the new property block to the Renderer !
 		_renderer.SetPropertyBlock (_mpb);
 		
