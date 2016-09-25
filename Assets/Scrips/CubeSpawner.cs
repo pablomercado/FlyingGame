@@ -9,7 +9,9 @@ public class CubeSpawner : MonoBehaviour {
     public int zSize = 10;
     public int distanceBetweenCubes = 20;
     public bool RandomSize = false;
+    public GameObject Sphere;
 
+    private float rotationController = 0f;
     private Vector3[] cubesPosition;
     private RoundedCube[] cubes;
 
@@ -33,8 +35,10 @@ public class CubeSpawner : MonoBehaviour {
     {
         cubes = new RoundedCube[xSize * zSize];
         if (cubesPosition != null) {
+            Quaternion rotation = Quaternion.Euler(new Vector3(10f, 0f, 0f));
             for (int i = 0; i < cubesPosition.Length; i++) {
-                RoundedCube cubeClone = Instantiate(RoundedCube, cubesPosition[i], gameObject.transform.rotation) as RoundedCube;
+                RoundedCube cubeClone = Instantiate(RoundedCube, cubesPosition[i], rotation) as RoundedCube;
+                cubeClone.GetComponent<Rigidbody>().isKinematic = true;
                 cubes[i] = cubeClone;
                 if (RandomSize)
                 {
@@ -54,6 +58,14 @@ public class CubeSpawner : MonoBehaviour {
     }
 
     void Update () {
+
+        rotationController += Time.deltaTime;
+        Vector3 position = new Vector3(Mathf.Sin(rotationController), Mathf.Cos(rotationController), 0f);
+        Debug.Log(rotationController + " ," + Mathf.Cos(rotationController));
+        Sphere.transform.position = position;
+        if (rotationController > Mathf.PI * 1)
+            rotationController = 0f;
+
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
@@ -61,7 +73,9 @@ public class CubeSpawner : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 100.0f))
             {
                 //StartCoroutine(ScaleMe(hit.transform));
-                hit.transform.GetComponent<Rigidbody>().isKinematic = false;
+                Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
+                if (rigidbody != null)
+                    rigidbody.isKinematic = false;
                 Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
             }
         }
