@@ -30,11 +30,13 @@ public class SphereSpawner : MonoBehaviour
         float interval = Pi2 / ElementsPerRing;
         cubesPosition = new Vector3[ElementsPerRing * NumberOfRings];
         float yInterval = (radius * 2) / NumberOfRings;
+        float radiousRatio;
         for (int y = 0, r = 0; y < NumberOfRings; y++)
         {
+            radiousRatio = (Pi2 / yInterval) * y;
             for (int i = 0; i < ElementsPerRing; i++, r++)
             {
-                cubesPosition[r] = new Vector3(Mathf.Cos(interval * i) * radius, (yInterval* y) - radius, Mathf.Sin(interval * i) * radius);
+                cubesPosition[r] = new Vector3(Mathf.Cos(interval * i) * radiousRatio * (radius/2), (yInterval* y) - radius, Mathf.Sin(interval * i) * radius);
                 Debug.Log(r);
             }
         }
