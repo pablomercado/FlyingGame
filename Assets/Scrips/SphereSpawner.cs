@@ -8,7 +8,7 @@ public class SphereSpawner : MonoBehaviour
     public RoundedCube RoundedCube;
     public int ElementsPerRing = 10;
     public int NumberOfRings = 10;
-    public float radius = 50f;
+    public float radious = 50f;
     public bool RandomSize = false;
     public GameObject Sphere;
 
@@ -27,17 +27,22 @@ public class SphereSpawner : MonoBehaviour
     private void ConfigureField()
     {
         float Pi2 = Mathf.PI * 2;
-        float interval = Pi2 / ElementsPerRing;
+        float xRadiantInterval = Pi2 / ElementsPerRing;
+        float yRadiantInterval = Mathf.PI / NumberOfRings;
         cubesPosition = new Vector3[ElementsPerRing * NumberOfRings];
-        float yInterval = (radius * 2) / NumberOfRings;
         float radiousRatio;
-        for (int y = 0, r = 0; y < NumberOfRings; y++)
+        for (int y = 1, r = 0; y <= NumberOfRings; y++)
         {
-            radiousRatio = (Pi2 / yInterval) * y;
-            for (int i = 0; i < ElementsPerRing; i++, r++)
+            radiousRatio = Mathf.Sin(yRadiantInterval * y);
+
+            float yInterval = (radious * 2) / NumberOfRings;
+
+            for (int i = 1; i <= ElementsPerRing; i++, r++)
             {
-                cubesPosition[r] = new Vector3(Mathf.Cos(interval * i) * radiousRatio * (radius/2), (yInterval* y) - radius, Mathf.Sin(interval * i) * radius);
-                Debug.Log(r);
+                cubesPosition[r] = new Vector3(Mathf.Cos(xRadiantInterval * i) * radiousRatio * radious, (yInterval * y) - radious , Mathf.Sin(xRadiantInterval * i) * radiousRatio * radious);
+                //cubesPosition[r] = new Vector3(Mathf.Cos(interval * i) * radiousRatio * radious, (yInterval * y) - radious , Mathf.Sin(interval * i) * radiousRatio * radious);
+                //cubesPosition[r] = new Vector3(Mathf.Cos(interval * i) * radius, (yInterval* y) - radius, Mathf.Sin(interval * i) * radius);
+                Debug.Log(r + " + component x, " + radiousRatio);
             }
         }
     }
