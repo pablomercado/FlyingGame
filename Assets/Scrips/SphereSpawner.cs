@@ -1,27 +1,27 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 using System;
 
 public class SphereSpawner : MonoBehaviour
 {
 
-    public RoundedCube RoundedCube;
+    public GameObject RoundedCube;
     public int ElementsPerRing = 10;
     public int NumberOfRings = 10;
     public float radious = 50f;
     public bool RandomSize = false;
-    public GameObject Sphere;
 
     private float rotationController = 0f;
     private Vector3[] cubesPosition;
-    private RoundedCube[] cubes;
+    private GameObject[] cubes;
     private float t = 0f;
     private float durationProgress = 0f;
 
     void Start()
     {
         ConfigureField();
-        SpawnCubes();
+        StartCoroutine(SpawnCubes());
     }
 
     private void ConfigureField()
@@ -35,42 +35,32 @@ public class SphereSpawner : MonoBehaviour
         {
             radiousRatio = Mathf.Sin(yRadiantInterval * y);
 
+            int dynamicElementsPerRing = Mathf.FloorToInt(radiousRatio * ElementsPerRing);
+
             float yInterval = (radious * 2) / NumberOfRings;
 
-            for (int i = 1; i <= ElementsPerRing; i++, r++)
+            xRadiantInterval = Pi2 / dynamicElementsPerRing;
+
+            for (int i = 1; i <= dynamicElementsPerRing; i++, r++)
             {
-                cubesPosition[r] = new Vector3(Mathf.Cos(xRadiantInterval * i) * radiousRatio * radious, (yInterval * y) - radious , Mathf.Sin(xRadiantInterval * i) * radiousRatio * radious);
-                //cubesPosition[r] = new Vector3(Mathf.Cos(interval * i) * radiousRatio * radious, (yInterval * y) - radious , Mathf.Sin(interval * i) * radiousRatio * radious);
-                //cubesPosition[r] = new Vector3(Mathf.Cos(interval * i) * radius, (yInterval* y) - radius, Mathf.Sin(interval * i) * radius);
+                cubesPosition[r] = new Vector3(Mathf.Cos(xRadiantInterval * i) * radiousRatio * radious, Mathf.Cos(yRadiantInterval * y) * radious, Mathf.Sin(xRadiantInterval * i) * radiousRatio * radious);
                 Debug.Log(r + " + component x, " + radiousRatio);
             }
         }
     }
 
-    private void SpawnCubes()
+    private IEnumerator SpawnCubes()
     {
-        cubes = new RoundedCube[ElementsPerRing * NumberOfRings];
+        cubes = new GameObject[ElementsPerRing * NumberOfRings];
         Debug.Assert(cubesPosition != null);
         if (cubesPosition != null)
         {
             for (int i = 0; i < cubesPosition.Length; i++)
             {
-                RoundedCube cubeClone = Instantiate(RoundedCube, cubesPosition[i], Quaternion.identity) as RoundedCube;
+                GameObject cubeClone = Instantiate(RoundedCube, cubesPosition[i], Quaternion.identity) as GameObject;
                 cubeClone.GetComponent<Rigidbody>().isKinematic = true;
                 cubes[i] = cubeClone;
-                if (RandomSize)
-                {
-                    cubeClone.xSize = Mathf.FloorToInt(UnityEngine.Random.Range(6f, 20f));
-                    cubeClone.zSize = Mathf.FloorToInt(UnityEngine.Random.Range(6f, 20f));
-                    cubeClone.ySize = Mathf.FloorToInt(UnityEngine.Random.Range(6f, 100f));
-                }
-                else
-                {
-                    cubeClone.xSize = 6;
-                    cubeClone.zSize = 4;
-                    cubeClone.ySize = 6;
-                }
-                cubeClone.Generate();
+                yield return null;
             }
         }
     }
@@ -104,28 +94,34 @@ public class SphereSpawner : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 100.0f))
+            if (Physics.Raycast(ray, out hit))
             {
-                //StartCoroutine(ScaleMe(hit.transform));
                 Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
                 if (rigidbody != null)
                 {
-                    if (rigidbody.isKinematic)
-                        rigidbody.isKinematic = false;
-                    else
+                    if (rigidbody.isKinematic == false)
                     {
                         rigidbody.isKinematic = true;
                         for (int i = 0; i < cubes.Length; i++)
                         {
                             if (rigidbody.transform == cubes[i].transform)
-                            {
                                 StartCoroutine(moveTo(3f, cubes[i].transform, cubesPosition[i], Vector3.zero));
-                                //cubes[i].transform.position = cubesPosition[i];
-                                //cubes[i].transform.rotation = Quaternion.Euler(Vector3.zero);
-                            }
-                                
                         }
                     }
+                }
+            }
+        }
+        if (Input.GetMouseButton(0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
+                if (rigidbody != null)
+                {
+                    if (rigidbody.isKinematic)
+                        rigidbody.isKinematic = false;
                 }
             }
         }
