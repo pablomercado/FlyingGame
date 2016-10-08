@@ -15,8 +15,6 @@ public class SphereSpawner : MonoBehaviour
     private float rotationController = 0f;
     private Vector3[] cubesPosition;
     private GameObject[] cubes;
-    private float t = 0f;
-    private float durationProgress = 0f;
 
     void Start()
     {
@@ -44,7 +42,6 @@ public class SphereSpawner : MonoBehaviour
             for (int i = 1; i <= dynamicElementsPerRing; i++, r++)
             {
                 cubesPosition[r] = new Vector3(Mathf.Cos(xRadiantInterval * i) * radiousRatio * radious, Mathf.Cos(yRadiantInterval * y) * radious, Mathf.Sin(xRadiantInterval * i) * radiousRatio * radious);
-                Debug.Log(r + " + component x, " + radiousRatio);
             }
         }
     }
@@ -59,6 +56,7 @@ public class SphereSpawner : MonoBehaviour
             {
                 GameObject cubeClone = Instantiate(RoundedCube, cubesPosition[i], Quaternion.identity) as GameObject;
                 cubeClone.GetComponent<Rigidbody>().isKinematic = true;
+                //cubeClone.index = i;
                 cubes[i] = cubeClone;
                 yield return null;
             }
@@ -67,8 +65,8 @@ public class SphereSpawner : MonoBehaviour
 
     private IEnumerator moveTo(float duration, Transform cube, Vector3 aim, Vector3 aimRotation)
     {
-        t = 0;
-        durationProgress = 0f;
+        float t = 0;
+        float durationProgress = 0f;
         Vector3 initialPosition = cube.transform.position;
         Quaternion initialRotation = cube.transform.rotation;
         Quaternion _aimRotation = Quaternion.Euler(aimRotation);
@@ -78,6 +76,7 @@ public class SphereSpawner : MonoBehaviour
             cube.transform.rotation = Quaternion.Lerp(initialRotation, _aimRotation, t);
             t = durationProgress / duration;
             durationProgress += Time.deltaTime;
+            Debug.Log(t);
             yield return null;
         }
         yield return null;
@@ -90,13 +89,15 @@ public class SphereSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(1) || Input.GetMouseButtonDown(1))
         {
+            Debug.Log("Pressed right click.");
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
                 Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
+                Debug.Log(hit.transform);
                 if (rigidbody != null)
                 {
                     if (rigidbody.isKinematic == false)
@@ -104,14 +105,14 @@ public class SphereSpawner : MonoBehaviour
                         rigidbody.isKinematic = true;
                         for (int i = 0; i < cubes.Length; i++)
                         {
-                            if (rigidbody.transform == cubes[i].transform)
+                            if (hit.transform == cubes[i].transform)
                                 StartCoroutine(moveTo(3f, cubes[i].transform, cubesPosition[i], Vector3.zero));
                         }
                     }
                 }
             }
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
