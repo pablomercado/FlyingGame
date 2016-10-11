@@ -11,6 +11,7 @@ public class SphereSpawner : MonoBehaviour
     public int NumberOfRings = 10;
     public float radious = 50f;
     public bool RandomSize = false;
+    public GameObject Magnet;
 
     private float rotationController = 0f;
     private Vector3[] cubesPosition;
@@ -58,9 +59,9 @@ public class SphereSpawner : MonoBehaviour
                 cubeClone.GetComponent<Rigidbody>().isKinematic = true;
                 //cubeClone.index = i;
                 cubes[i] = cubeClone;
-                yield return null;
             }
         }
+        yield return null;
     }
 
     private IEnumerator moveTo(float duration, Transform cube, Vector3 aim, Vector3 aimRotation)
@@ -77,7 +78,6 @@ public class SphereSpawner : MonoBehaviour
             t = durationProgress / duration;
             durationProgress += Time.deltaTime;
             Debug.Log(t);
-            yield return null;
         }
         yield return null;
     }
@@ -89,42 +89,52 @@ public class SphereSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(1) || Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("Pressed right click.");
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
-                Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
-                Debug.Log(hit.transform);
-                if (rigidbody != null)
-                {
-                    if (rigidbody.isKinematic == false)
-                    {
-                        rigidbody.isKinematic = true;
-                        for (int i = 0; i < cubes.Length; i++)
-                        {
-                            if (hit.transform == cubes[i].transform)
-                                StartCoroutine(moveTo(3f, cubes[i].transform, cubesPosition[i], Vector3.zero));
-                        }
-                    }
-                }
-            }
-        }
-        if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
-                Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
-                if (rigidbody != null)
-                {
-                    if (rigidbody.isKinematic)
-                        rigidbody.isKinematic = false;
-                }
-            }
-        }
+        int i = 200;
+        //for (int i = 0; i < cubesPosition.Length; i++)
+        //{
+            float scalar = Vector3.Dot(Magnet.transform.position, cubesPosition[i]);
+        scalar = scalar / cubesPosition[i].magnitude;
+        Debug.Log(scalar);
+        Debug.Log(scalar / cubesPosition[i].magnitude);
+        cubes[i].transform.position = cubesPosition[i] * (scalar / cubesPosition[i].magnitude);
+        //}
+
+        //if (Input.GetMouseButton(1) || Input.GetMouseButtonDown(1))
+        //{
+        //    Debug.Log("Pressed right click.");
+        //    RaycastHit hit;
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
+        //        Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
+        //        Debug.Log(hit.transform);
+        //        if (rigidbody != null)
+        //        {
+        //            if (rigidbody.isKinematic == false)
+        //            {
+        //                rigidbody.isKinematic = true;
+        //                for (int i = 0; i < cubes.Length; i++)
+        //                {
+        //                    if (hit.transform == cubes[i].transform)
+        //                        StartCoroutine(moveTo(3f, cubes[i].transform, cubesPosition[i], Vector3.zero));
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+        //if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
+        //{
+        //    RaycastHit hit;
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
+        //        Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
+        //        if (rigidbody != null)
+        //        {
+        //            if (rigidbody.isKinematic)
+        //                rigidbody.isKinematic = false;
+        //        }
+        //    }
+        //}
     }
 }
