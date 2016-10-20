@@ -86,18 +86,20 @@ public class SphereSpawner : MonoBehaviour
     {
         yield return null;
     }
-
+    
     void Update()
     {
-        int i = 200;
-        //for (int i = 0; i < cubesPosition.Length; i++)
-        //{
+        //int i = 200;
+        for (int i = 0; i < cubesPosition.Length; i++)
+        {
             float scalar = Vector3.Dot(Magnet.transform.position, cubesPosition[i]);
-        scalar = scalar / cubesPosition[i].magnitude;
-        Debug.Log(scalar);
-        Debug.Log(scalar / cubesPosition[i].magnitude);
-        cubes[i].transform.position = cubesPosition[i] * (scalar / cubesPosition[i].magnitude);
-        //}
+            //Debug.Log(scalar);
+            float positionMagnitude = cubesPosition[i].magnitude;
+            if (scalar >= positionMagnitude)
+                cubes[i].transform.position = cubesPosition[i].normalized * (scalar / positionMagnitude);
+            else
+                cubes[i].transform.position = cubesPosition[i];
+        }
 
         //if (Input.GetMouseButton(1) || Input.GetMouseButtonDown(1))
         //{
