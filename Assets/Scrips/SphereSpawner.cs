@@ -98,11 +98,6 @@ public class SphereSpawner : MonoBehaviour
             {
                 float extraNumber = (scalar / (positionMagnitude + 0.000000001f)) - 1f;
                 cubes[i].transform.position = cubesPosition[i] * (1f + Mathf.Sin(Mathf.Pow(extraNumber/2f, 2f)));
-                //Vector3 newVector = cubesPosition[i].normalized * scalar;
-                //if (newVector.magnitude >= positionMagnitude)
-                //    cubes[i].transform.position = newVector;
-                //else
-                //    cubes[i].transform.position = cubesPosition[i];
             }
             else
                 cubes[i].transform.position = cubesPosition[i];
